@@ -1,6 +1,6 @@
 ## Program to Simulate Scheduling Algorithms
 
-Generic code in C of CPU Scheduling algorithms:
+Generic code in C for CPU Scheduling algorithms:
 - [First Come First Serve](https://github.com/pratyushgguptaa/operating-system/blob/main/scheduling-algorithms/fcfs_sjf_srtf_rr_npp_pp.c#:~:text=void-,first_come_first_serve,-(int%20n%2C%20int*%20pro%2C%20int*%20arrival%2C%20int*%20burst)%20%7B)
 - [Shortest Job First](https://github.com/pratyushgguptaa/operating-system/blob/main/scheduling-algorithms/fcfs_sjf_srtf_rr_npp_pp.c#:~:text=void-,shortest_job_first,-(int%20n%2C%20int*%20pro%2C%20int*%20arrival%2C%20int*%20burst)%20%7B)
 - [Shortest Remaining Time First](https://github.com/pratyushgguptaa/operating-system/blob/main/scheduling-algorithms/fcfs_sjf_srtf_rr_npp_pp.c#:~:text=void-,shortest_remaining_time_first,-(int%20n%2C%20int*%20pro%2C%20int*%20arrival%2C%20int*%20burst)%20%7B)

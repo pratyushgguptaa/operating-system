@@ -13,9 +13,9 @@ struct process {
     struct process* next;
 } typedef process;
 
-process *head1 = NULL, *tail1;  //queue 1
-process *head2 = NULL, *tail2;  //queue 2
-process *head3 = NULL, *tail3;  //queue 3
+process *head1 = NULL, *tail1;  // queue 1
+process *head2 = NULL, *tail2;  // queue 2
+process *head3 = NULL, *tail3;  // queue 3
 process *head4 = NULL, *tail4;  // complete list
 
 process* create(int PID, int bur);
@@ -38,7 +38,7 @@ int main() {
         scanf("%d %d", &pid, &burst_time);
         enqueue(&head1, &tail1, create(pid, burst_time));
     }
-    
+
     int q1quanta = 8, q2quanta = 16, q3quanta = 32;
     int rr1quanta = 2, rr2quanta = 4;
     multilevel_feedback_queue(n, q1quanta, q2quanta, q3quanta, rr1quanta, rr2quanta);
@@ -72,18 +72,18 @@ process* dequeue(process** head) {
 }
 
 void multilevel_feedback_queue(int n, int q1, int q2, int q3, int rr1, int rr2) {
-    //creating multilevel feedback queues
+    // creating multilevel feedback queues
     int time = 0, count = 0, t = 0;
     process* p;
     while (count - n) {
         t = 0;
-        //rr2
+        // rr2
         while (t < q1 && head1) {
             p = dequeue(&head1);
             if (p->remaining == p->burst_time)
                 p->response = time + t - p->arrival_time;
             if (p->remaining <= rr1) {
-                //process finsihed send to complete list
+                // process finsihed send to complete list
                 t += p->remaining;
                 p->remaining = 0;
                 p->turnaround = time + t - p->arrival_time;
@@ -100,14 +100,14 @@ void multilevel_feedback_queue(int n, int q1, int q2, int q3, int rr1, int rr2) 
             enqueue(&head2, &tail2, dequeue(&head1));
         }
         time += t;
-        //rr4
+        // rr4
         t = 0;
         while (t < q2 && head2) {
             p = dequeue(&head2);
             if (p->remaining == p->burst_time)
                 p->response = time + t - p->arrival_time;
             if (p->remaining <= rr2) {
-                //process finsihed send to complete list
+                // process finsihed send to complete list
                 t += p->remaining;
                 p->remaining = 0;
                 p->turnaround = time + t - p->arrival_time;
@@ -124,14 +124,14 @@ void multilevel_feedback_queue(int n, int q1, int q2, int q3, int rr1, int rr2) 
             enqueue(&head3, &tail3, dequeue(&head2));
         }
         time += t;
-        //fcfs
+        // fcfs
         t = 0;
         while (t < q3 && head3) {
             p = dequeue(&head3);
             if (p->remaining == p->burst_time)
                 p->response = time + t - p->arrival_time;
             if (p->remaining + t <= q3) {
-                //process finished
+                // process finished
                 t += p->remaining;
                 p->remaining = 0;
                 p->turnaround = time + t - p->arrival_time;
